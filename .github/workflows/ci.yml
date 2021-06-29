@@ -37,6 +37,7 @@ jobs:
           python-version: "3.8"
       - name: Install ffmpeg
         run: |
+          sudo apt update
           sudo apt-get install --no-install-recommends --yes ffmpeg
       - name: Install tox and codecov
         run: |
@@ -58,14 +59,14 @@ jobs:
           DJANGO_MINIO_STORAGE_ENDPOINT: localhost:9000
           DJANGO_MINIO_STORAGE_ACCESS_KEY: minioAccessKey
           DJANGO_MINIO_STORAGE_SECRET_KEY: minioSecretKey
-      - name: Run tests
-        run: |
-          tox -e test
-        env:
-          DJANGO_DATABASE_URL: postgres://postgres:postgres@localhost:5432/django
-          DJANGO_MINIO_STORAGE_ENDPOINT: localhost:9000
-          DJANGO_MINIO_STORAGE_ACCESS_KEY: minioAccessKey
-          DJANGO_MINIO_STORAGE_SECRET_KEY: minioSecretKey
-      - name: Upload Coverage
-        run: |
-          codecov
+      # - name: Run tests
+      #   run: |
+      #     tox -e test
+      #   env:
+      #     DJANGO_DATABASE_URL: postgres://postgres:postgres@localhost:5432/django
+      #     DJANGO_MINIO_STORAGE_ENDPOINT: localhost:9000
+      #     DJANGO_MINIO_STORAGE_ACCESS_KEY: minioAccessKey
+      #     DJANGO_MINIO_STORAGE_SECRET_KEY: minioSecretKey
+      # - name: Upload Coverage
+      #   run: |
+      #     codecov

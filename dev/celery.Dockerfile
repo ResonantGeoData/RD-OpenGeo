@@ -28,6 +28,6 @@ COPY ./fuse.sh /opt/django-project/fuse.sh
 WORKDIR /opt/django-project
 RUN pip install \
     --find-links https://girder.github.io/large_image_wheels \
-    -e .[dev,worker,fuse,fmv]
+    -e .[dev,worker,fuse]
 
 ENTRYPOINT ["/opt/django-project/fuse.sh"]

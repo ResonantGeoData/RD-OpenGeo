@@ -23,7 +23,7 @@ services:
       dockerfile: ./dev/celery.Dockerfile
     command: [
       "celery",
-      "--app", "rgd.celery",
+      "--app", "opengeo.celery",
       "worker",
       "--loglevel", "INFO",
       "--without-heartbeat"
@@ -33,10 +33,10 @@ services:
     privileged: true
     env_file: ./dev/.env.docker-compose
     environment:
-      - TMPDIR=/tmp/rgd_worker
+      - TMPDIR=/tmp/opengeo_worker
     volumes:
       - .:/opt/django-project
-      - /tmp/rgd_worker:/tmp/rgd_worker
+      - /tmp/opengeo_worker:/tmp/opengeo_worker
     depends_on:
       - postgres
       - rabbitmq
@@ -47,11 +47,3 @@ services:
     command: ["--broker=amqp://rabbitmq:5672/", "--url_prefix=flower"]
     ports:
       - 5555:5555
-
-  sass:
-    build:
-      context: ./dev
-      dockerfile: ./sass.Dockerfile
-    volumes:
-      # Must point to top level, image will compile things in `sass/ su`
-      - ./rgd/geodata/static/geodata/css/:/src

@@ -11,14 +11,14 @@ else:
     long_description = ''
 
 setup(
-    name='resonantgeodata',
+    name='opengeo',
     version='0.1.1',
     description='',
     long_description=long_description,
     long_description_content_type='text/markdown',
     license='Apache 2.0',
     author='Kitware, Inc.',
-    author_email='kitware@kitware.com',
+    author_email='rgd@kitware.com',
     url='https://github.com/ResonantGeoData/ResonantGeoData',
     keywords='',
     classifiers=[
@@ -37,38 +37,21 @@ setup(
     packages=find_packages(),
     include_package_data=True,
     install_requires=[
-        'boto3',
-        'celery',
-        'django>=3.2',  # See PR #264: due to this bug: https://code.djangoproject.com/ticket/31910
-        'django-allauth',
-        'django-cleanup',
-        'django-click',
         'django-configurations[database,email]',
+        'django-cleanup',
         'django-crispy-forms',
-        'django-extensions',
-        'django-filter',
-        'django-girder-utils',
-        'django-model-utils',
-        'django-oauth-toolkit',
-        'djangorestframework',
-        'drf-yasg',
-        'GDAL',
-        'large-image>=1.6.0',
-        'large-image-source-gdal>=1.6.0',
-        'large-image-source-pil>=1.6.0',
-        'numpy',
-        'pooch',
-        'python-magic',
-        'pystac[validation]',
-        'rasterio',
         'rules',
-        'shapely',
-        'uritemplate',
         # Production-only
         'django-composed-configuration[prod]>=0.16',
         'django-s3-file-field[minio]',
         'flower',
         'gunicorn',
+        # RGD
+        'django-rgd>=0.2.0',
+        'django-rgd-3d>=0.2.0',
+        'django-rgd-fmv>=0.2.0',
+        'django-rgd-geometry>=0.2.0',
+        'django-rgd-imagery>=0.2.0',
     ],
     extras_require={
         'dev': [
@@ -78,20 +61,13 @@ setup(
             'tox',
         ],
         'worker': [
-            'fiona',
-            'scipy',
-            'kwarray>=0.5.10',
-            'kwcoco',
-            'kwimage[headless]>=0.6.7',
-            'large-image-converter',
-            'pyntcloud[LAS]',
-            'pyvista',
+            'django-rgd-3d[worker]>=0.2.0',
+            'django-rgd-fmv[worker]>=0.2.0',
+            'django-rgd-geometry[worker]>=0.2.0',
+            'django-rgd-imagery[worker]>=0.2.0',
         ],
         'fuse': [
-            'simple-httpfs',
-        ],
-        'fmv': [
-            'kwiver',
+            'django-rgd[fuse]>=0.2.0',
         ],
     },
 )

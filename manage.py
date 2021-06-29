@@ -6,7 +6,7 @@ import configurations.importer
 
 
 def main():
-    os.environ['DJANGO_SETTINGS_MODULE'] = 'rgd.settings'
+    os.environ['DJANGO_SETTINGS_MODULE'] = 'opengeo.settings'
     # Production usage runs manage.py for tasks like collectstatic,
     # so DJANGO_CONFIGURATION should always be explicitly set in production
     os.environ.setdefault('DJANGO_CONFIGURATION', 'DevelopmentConfiguration')

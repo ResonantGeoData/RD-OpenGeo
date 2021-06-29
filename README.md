@@ -24,7 +24,7 @@ Documentation is currently a work in progress. We have created some initial usag
 
 Specifically, we have included [instructions on how to ingest data](https://github.com/ResonantGeoData/ResonantGeoData/blob/master/docs/ingest-data.md) into a deployed ResonantGeoData instance.
 
-For general questions about the project, its applications, or about software usage, please create an issue directly in this repository. You are also welcome to send us an email at kitware@kitware.com with the subject line including ResonantGeoData.
+For general questions about the project, its applications, or about software usage, please create an issue directly in this repository. You are also welcome to send us an email at rgd@kitware.com with the subject line including ResonantGeoData.
 
 ## Connections
 
