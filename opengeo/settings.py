@@ -110,6 +110,10 @@ class TestingConfiguration(OpenGeoMixin, TestingBaseConfiguration):
     CELERY_TASK_EAGER_PROPAGATES = True
 
 
+class NonDebugDevConfiguration(DevelopmentConfiguration):
+    DEBUG = True
+
+
 class ProductionConfiguration(OpenGeoMixin, ProductionBaseConfiguration):
     pass
 

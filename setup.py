@@ -45,7 +45,7 @@ setup(
         'django-composed-configuration[prod]>=0.16',
         'django-s3-file-field[minio]',
         'flower',
-        'gunicorn',
+        'gunicorn[gthread]',
         # RGD
         'django-rgd>=0.2.0',
         'django-rgd-3d>=0.2.0',
