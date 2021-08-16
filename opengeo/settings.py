@@ -5,6 +5,7 @@ from typing import Type
 from composed_configuration import (
     ComposedConfiguration,
     ConfigMixin,
+    CorsMixin,
     DevelopmentBaseConfiguration,
     HerokuProductionBaseConfiguration,
     ProductionBaseConfiguration,
@@ -49,7 +50,7 @@ class CrispyFormsMixin(ConfigMixin):
         configuration.INSTALLED_APPS += ['crispy_forms']
 
 
-class OpenGeoMixin(CrispyFormsMixin, GeoDjangoMixin, SwaggerMixin, ConfigMixin):
+class OpenGeoMixin(CrispyFormsMixin, GeoDjangoMixin, SwaggerMixin, CorsMixin, ConfigMixin):
     WSGI_APPLICATION = 'opengeo.wsgi.application'
     ROOT_URLCONF = 'opengeo.urls'
 
@@ -99,6 +100,9 @@ class OpenGeoMixin(CrispyFormsMixin, GeoDjangoMixin, SwaggerMixin, ConfigMixin):
     CELERY_WORKER_SEND_TASK_EVENTS = True
 
     RGD_FILE_FIELD_PREFIX = values.Value(default=None)
+
+    # To use tile endpoints from external origin
+    CORS_ORIGIN_ALLOW_ALL = True
 
 
 class DevelopmentConfiguration(OpenGeoMixin, DevelopmentBaseConfiguration):
