@@ -101,7 +101,7 @@ class OpenGeoMixin(CrispyFormsMixin, GeoDjangoMixin, SwaggerMixin, CorsMixin, Co
 
     RGD_FILE_FIELD_PREFIX = values.Value(default=None)
 
-    # To use tile endpoints from external origin
+    # To use endpoints from external origin
     CORS_ORIGIN_ALLOW_ALL = True
 
 
