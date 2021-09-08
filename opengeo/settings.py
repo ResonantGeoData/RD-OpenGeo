@@ -77,6 +77,12 @@ class OpenGeoMixin(CrispyFormsMixin, GeoDjangoMixin, SwaggerMixin, ConfigMixin):
             'rgd_fmv',
             'rgd_geometry',
             'rgd_imagery',
+            # Configure the django-otp package.
+            'django_otp',
+            'django_otp.plugins.otp_totp',
+            'django_otp.plugins.otp_static',
+            # Enable two-factor auth.
+            'allauth_2fa',
         ]
 
         configuration.REST_FRAMEWORK['DEFAULT_AUTHENTICATION_CLASSES'].append(
@@ -99,6 +105,8 @@ class OpenGeoMixin(CrispyFormsMixin, GeoDjangoMixin, SwaggerMixin, ConfigMixin):
     CELERY_WORKER_SEND_TASK_EVENTS = True
 
     RGD_FILE_FIELD_PREFIX = values.Value(default=None)
+
+    ACCOUNT_ADAPTER = 'allauth_2fa.adapter.OTPAdapter'
 
 
 class DevelopmentConfiguration(OpenGeoMixin, DevelopmentBaseConfiguration):

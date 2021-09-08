@@ -41,6 +41,7 @@ setup(
         'django-cleanup',
         'django-crispy-forms',
         'rules',
+        'django-allauth-2fa',
         # Production-only
         'django-composed-configuration[prod]>=0.16',
         'django-s3-file-field[minio]',

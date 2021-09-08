@@ -57,6 +57,7 @@ SwaggerAutoSchema.get_summary_and_description = drf_yasg_get_summary_and_descrip
 
 
 urlpatterns = [
+    path('accounts/', include('allauth_2fa.urls')),
     path('accounts/', include('allauth.urls')),
     path('oauth/', include('oauth2_provider.urls', namespace='oauth2_provider')),
     path('admin/', admin.site.urls),
