@@ -106,7 +106,7 @@ class OpenGeoMixin(CrispyFormsMixin, GeoDjangoMixin, SwaggerMixin, ConfigMixin):
 
     RGD_FILE_FIELD_PREFIX = values.Value(default=None)
 
-    ACCOUNT_ADAPTER = 'allauth_2fa.adapter.OTPAdapter'
+    ACCOUNT_ADAPTER = 'opengeo.auth.TwoFactorAuthAdapter'
 
 
 class DevelopmentConfiguration(OpenGeoMixin, DevelopmentBaseConfiguration):
