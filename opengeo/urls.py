@@ -2,6 +2,7 @@ import re
 
 from django.conf import settings
 from django.contrib import admin
+from django.contrib.auth.decorators import login_required
 from django.urls import include, path, re_path
 from django.views.generic.base import RedirectView
 from drf_yasg import openapi
@@ -55,6 +56,9 @@ def drf_yasg_get_summary_and_description(self):
 # better with our views.
 SwaggerAutoSchema.get_summary_and_description = drf_yasg_get_summary_and_description
 
+# Require all logins to go through allauth instead of the admin page.
+# This allows us to enforce 2FA even for the admin page.
+admin.site.login = login_required(admin.site.login)
 
 urlpatterns = [
     path('accounts/', include('allauth_2fa.urls')),
