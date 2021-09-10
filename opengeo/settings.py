@@ -91,6 +91,12 @@ class OpenGeoMixin(CrispyFormsMixin, GeoDjangoMixin, SwaggerMixin, ConfigMixin):
 
         configuration.AUTHENTICATION_BACKENDS.insert(0, 'rules.permissions.ObjectPermissionBackend')
 
+        configuration.MIDDLEWARE += [
+            'django_otp.middleware.OTPMiddleware',
+            'allauth_2fa.middleware.AllauthTwoFactorMiddleware',
+            'opengeo.auth.RequireTwoFactorAuthMiddleware',
+        ]
+
     # This cannot have a default value, since the password and database name are always
     # set by the service admin
     DATABASES = values.DatabaseURLValue(
