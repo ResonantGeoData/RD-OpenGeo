@@ -52,6 +52,7 @@ setup(
         'django-rgd-fmv>=0.2.5',
         'django-rgd-geometry>=0.2.5',
         'django-rgd-imagery>=0.2.5',
+        'beautifulsoup4',
     ],
     extras_require={
         'dev': [
