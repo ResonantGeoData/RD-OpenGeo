@@ -49,7 +49,27 @@ class CrispyFormsMixin(ConfigMixin):
         configuration.INSTALLED_APPS += ['crispy_forms']
 
 
-class OpenGeoMixin(CrispyFormsMixin, GeoDjangoMixin, SwaggerMixin, ConfigMixin):
+class TwoFactorAuthMixin(ConfigMixin):
+    @staticmethod
+    def before_binding(configuration: Type[ComposedConfiguration]):
+        configuration.INSTALLED_APPS += [
+            # Configure the django-otp package.
+            'django_otp',
+            'django_otp.plugins.otp_totp',
+            'django_otp.plugins.otp_static',
+            # Enable two-factor auth.
+            'allauth_2fa',
+        ]
+        configuration.MIDDLEWARE += [
+            'django_otp.middleware.OTPMiddleware',
+            'allauth_2fa.middleware.AllauthTwoFactorMiddleware',
+            'opengeo.auth.RequireTwoFactorAuthMiddleware',
+        ]
+
+    ACCOUNT_ADAPTER = 'opengeo.auth.TwoFactorAuthAdapter'
+
+
+class OpenGeoMixin(CrispyFormsMixin, TwoFactorAuthMixin, GeoDjangoMixin, SwaggerMixin, ConfigMixin):
     WSGI_APPLICATION = 'opengeo.wsgi.application'
     ROOT_URLCONF = 'opengeo.urls'
 
@@ -77,12 +97,6 @@ class OpenGeoMixin(CrispyFormsMixin, GeoDjangoMixin, SwaggerMixin, ConfigMixin):
             'rgd_fmv',
             'rgd_geometry',
             'rgd_imagery',
-            # Configure the django-otp package.
-            'django_otp',
-            'django_otp.plugins.otp_totp',
-            'django_otp.plugins.otp_static',
-            # Enable two-factor auth.
-            'allauth_2fa',
         ]
 
         configuration.REST_FRAMEWORK['DEFAULT_AUTHENTICATION_CLASSES'].append(
@@ -90,12 +104,6 @@ class OpenGeoMixin(CrispyFormsMixin, GeoDjangoMixin, SwaggerMixin, ConfigMixin):
         )
 
         configuration.AUTHENTICATION_BACKENDS.insert(0, 'rules.permissions.ObjectPermissionBackend')
-
-        configuration.MIDDLEWARE += [
-            'django_otp.middleware.OTPMiddleware',
-            'allauth_2fa.middleware.AllauthTwoFactorMiddleware',
-            'opengeo.auth.RequireTwoFactorAuthMiddleware',
-        ]
 
     # This cannot have a default value, since the password and database name are always
     # set by the service admin
@@ -111,8 +119,6 @@ class OpenGeoMixin(CrispyFormsMixin, GeoDjangoMixin, SwaggerMixin, ConfigMixin):
     CELERY_WORKER_SEND_TASK_EVENTS = True
 
     RGD_FILE_FIELD_PREFIX = values.Value(default=None)
-
-    ACCOUNT_ADAPTER = 'opengeo.auth.TwoFactorAuthAdapter'
 
 
 class DevelopmentConfiguration(OpenGeoMixin, DevelopmentBaseConfiguration):
