@@ -58,6 +58,8 @@ class OpenGeoMixin(CrispyFormsMixin, GeoDjangoMixin, SwaggerMixin, ConfigMixin):
     # A setting to allow read access to all users if permissions are unassigned
     RGD_GLOBAL_READ_ACCESS = values.Value(default=False)
 
+    RGD_AUTO_APPROVE_SIGN_UP = values.Value(default=True)
+
     @staticmethod
     def before_binding(configuration: Type[ComposedConfiguration]):
         # Install local apps first, to ensure any overridden resources are found first

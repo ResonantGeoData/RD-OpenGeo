@@ -47,11 +47,11 @@ setup(
         'flower',
         'gunicorn',
         # RGD
-        'django-rgd>=0.2.5',
-        'django-rgd-3d>=0.2.5',
-        'django-rgd-fmv>=0.2.5',
-        'django-rgd-geometry>=0.2.5',
-        'django-rgd-imagery>=0.2.5',
+        'django-rgd>=0.2.6.dev4',
+        'django-rgd-3d>=0.2.6.dev4',
+        'django-rgd-fmv>=0.2.6.dev4',
+        'django-rgd-geometry>=0.2.6.dev4',
+        'django-rgd-imagery>=0.2.6.dev4',
         'beautifulsoup4',
     ],
     extras_require={
@@ -62,13 +62,13 @@ setup(
             'tox',
         ],
         'worker': [
-            'django-rgd-3d[worker]>=0.2.5',
-            'django-rgd-fmv[worker]>=0.2.5',
-            'django-rgd-geometry[worker]>=0.2.5',
-            'django-rgd-imagery[worker]>=0.2.5',
+            'django-rgd-3d[worker]>=0.2.6.dev4',
+            'django-rgd-fmv[worker]>=0.2.6.dev4',
+            'django-rgd-geometry[worker]>=0.2.6.dev4',
+            'django-rgd-imagery[worker]>=0.2.6.dev4',
         ],
         'fuse': [
-            'django-rgd[fuse]>=0.2.5',
+            'django-rgd[fuse]>=0.2.6.dev4',
         ],
     },
 )
