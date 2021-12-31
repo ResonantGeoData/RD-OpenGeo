@@ -1,3 +1,10 @@
 # This should only be used by the Heroku buildpack, as it does not support PIP_FIND_LINKS
 --find-links https://girder.github.io/large_image_wheels
+# Install RGD from main on Heroku deployment
+git+https://github.com/ResonantGeoData/ResonantGeoData.git#egg=django-rgd&subdirectory=django-rgd
+git+https://github.com/ResonantGeoData/ResonantGeoData.git#egg=django-rgd-3d&subdirectory=django-rgd-3d
+git+https://github.com/ResonantGeoData/ResonantGeoData.git#egg=django-rgd-fmv&subdirectory=django-rgd-fmv
+git+https://github.com/ResonantGeoData/ResonantGeoData.git#egg=django-rgd-geometry&subdirectory=django-rgd-geometry
+git+https://github.com/ResonantGeoData/ResonantGeoData.git#egg=django-rgd-imagery&subdirectory=django-rgd-imagery
+# Install this project
 -e .
