@@ -11,10 +11,16 @@ from composed_configuration import (
     TestingBaseConfiguration,
 )
 from configurations import values
-from rgd.configuration import ResonantGeoDataBaseMixin
+from rgd.configuration import MemachedMixin, ResonantGeoDataBaseMixin
 
 
-class OpenGeoMixin(ResonantGeoDataBaseMixin, CorsMixin, ConfigMixin):
+class MemachedCloudMixin(MemachedMixin):
+    MEMCACHED_URL = values.Value(default=None, environ_name='MEMCACHEDCLOUD_SERVERS')
+    MEMCACHED_USERNAME = values.Value(default=None, environ_name='MEMCACHEDCLOUD_USERNAME')
+    MEMCACHED_PASSWORD = values.Value(default=None, environ_name='MEMCACHEDCLOUD_PASSWORD')
+
+
+class OpenGeoMixin(ResonantGeoDataBaseMixin, CorsMixin, MemachedCloudMixin, ConfigMixin):
     WSGI_APPLICATION = 'opengeo.wsgi.application'
     ROOT_URLCONF = 'opengeo.urls'
 
