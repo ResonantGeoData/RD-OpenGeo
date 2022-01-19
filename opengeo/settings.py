@@ -15,9 +15,15 @@ from rgd.configuration import MemachedMixin, ResonantGeoDataBaseMixin
 
 
 class MemachedCloudMixin(MemachedMixin):
-    MEMCACHED_URL = values.Value(default=None, environ_name='MEMCACHEDCLOUD_SERVERS')
-    MEMCACHED_USERNAME = values.Value(default=None, environ_name='MEMCACHEDCLOUD_USERNAME')
-    MEMCACHED_PASSWORD = values.Value(default=None, environ_name='MEMCACHEDCLOUD_PASSWORD')
+    MEMCACHED_URL = values.Value(
+        default=None, environ_name='MEMCACHEDCLOUD_SERVERS', environ_prefix=None
+    )
+    MEMCACHED_USERNAME = values.Value(
+        default=None, environ_name='MEMCACHEDCLOUD_USERNAME', environ_prefix=None
+    )
+    MEMCACHED_PASSWORD = values.Value(
+        default=None, environ_name='MEMCACHEDCLOUD_PASSWORD', environ_prefix=None
+    )
 
 
 class OpenGeoMixin(ResonantGeoDataBaseMixin, CorsMixin, MemachedCloudMixin, ConfigMixin):
