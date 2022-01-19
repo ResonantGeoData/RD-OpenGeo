@@ -1,0 +1,21 @@
+name: Dependabot
+on:
+  push:
+    branches:
+      - main
+  schedule:
+    - cron: "0 0 * * *"
+jobs:
+  check-dependencies:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: marcoroth/dependabot-bump-together-action@master
+        with:
+          packages: django-rgd, django-rgd-3d, django-rgd-fmv, django-rgd-geometry, django-rgd-imagery
+          package_managers: pip
+          directory: /
+          branch: main
+          username: x-access-token
+          bundler_version: 2.0.2
+          dependabot_version: 0.117.5
+          token: ${{ secrets.GITHUB_ACCESS_TOKEN }}
