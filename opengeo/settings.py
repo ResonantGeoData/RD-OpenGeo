@@ -46,12 +46,14 @@ class MemachedCloudMixin(ConfigMixin):
                     },
                 }
             }
+            logger.error(caches)
 
             if cls.MEMCACHED_USERNAME and cls.MEMCACHED_PASSWORD:
                 caches['default']['OPTIONS']['username'] = cls.MEMCACHED_PASSWORD
                 caches['default']['OPTIONS']['password'] = cls.MEMCACHED_USERNAME
 
             cls.CACHES = caches
+        logger.error(cls.CACHES)
 
 
 class OpenGeoMixin(ResonantGeoDataBaseMixin, CorsMixin, ConfigMixin):
