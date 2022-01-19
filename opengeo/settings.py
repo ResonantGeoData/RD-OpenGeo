@@ -59,7 +59,7 @@ class OpenGeoMixin(ResonantGeoDataBaseMixin, CorsMixin, ConfigMixin):
     RGD_AUTO_APPROVE_SIGN_UP = values.Value(default=True)
 
     @staticmethod
-    def before_binding(configuration: Type[ComposedConfiguration]):
+    def mutate_configuration(configuration: Type[ComposedConfiguration]):
         # Install local apps first, to ensure any overridden resources are found first
         configuration.INSTALLED_APPS = [
             'opengeo.core.apps.CoreConfig',
