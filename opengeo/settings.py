@@ -1,3 +1,4 @@
+import logging
 from pathlib import Path
 from typing import Type
 
@@ -12,6 +13,8 @@ from composed_configuration import (
 )
 from configurations import values
 from rgd.configuration import ResonantGeoDataBaseMixin
+
+logger = logging.getLogger(__name__)
 
 
 class MemachedCloudMixin(ConfigMixin):
@@ -30,6 +33,8 @@ class MemachedCloudMixin(ConfigMixin):
     @classmethod
     def post_setup(cls):
         super().post_setup()
+
+        logger.error('In MemachedCloudMixin.post_setup()')
 
         if cls.MEMCACHED_URL:
             caches = {
@@ -96,7 +101,9 @@ class ProductionConfiguration(OpenGeoMixin, ProductionBaseConfiguration):
     pass
 
 
-class HerokuProductionConfiguration(OpenGeoMixin, MemachedCloudMixin, HerokuProductionBaseConfiguration):
+class HerokuProductionConfiguration(
+    OpenGeoMixin, MemachedCloudMixin, HerokuProductionBaseConfiguration
+):
     # Use different env var names (with no DJANGO_ prefix) for services that Heroku auto-injects
     DATABASES = values.DatabaseURLValue(
         environ_name='DATABASE_URL',
