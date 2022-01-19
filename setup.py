@@ -67,7 +67,7 @@ setup(
             'django-rgd-imagery[worker]==0.2.13',
         ],
         'fuse': [
-            'django-rgd[fuse]==0.2.13',
+            'django-rgd[fuse]==0.2.15',
         ],
     },
 )
