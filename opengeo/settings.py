@@ -49,7 +49,7 @@ class MemachedCloudMixin(ConfigMixin):
             cls.CACHES = caches
 
 
-class OpenGeoMixin(ResonantGeoDataBaseMixin, CorsMixin, MemachedCloudMixin, ConfigMixin):
+class OpenGeoMixin(ResonantGeoDataBaseMixin, CorsMixin, ConfigMixin):
     WSGI_APPLICATION = 'opengeo.wsgi.application'
     ROOT_URLCONF = 'opengeo.urls'
 
@@ -96,7 +96,7 @@ class ProductionConfiguration(OpenGeoMixin, ProductionBaseConfiguration):
     pass
 
 
-class HerokuProductionConfiguration(OpenGeoMixin, HerokuProductionBaseConfiguration):
+class HerokuProductionConfiguration(OpenGeoMixin, MemachedCloudMixin, HerokuProductionBaseConfiguration):
     # Use different env var names (with no DJANGO_ prefix) for services that Heroku auto-injects
     DATABASES = values.DatabaseURLValue(
         environ_name='DATABASE_URL',
