@@ -11,10 +11,10 @@ from composed_configuration import (
     TestingBaseConfiguration,
 )
 from configurations import values
-from rgd.configuration import MemachedMixin, ResonantGeoDataBaseMixin
+from rgd.configuration import ResonantGeoDataBaseMixin
 
 
-class MemachedCloudMixin(MemachedMixin):
+class MemachedCloudMixin(ConfigMixin):
     MEMCACHED_URL = values.Value(
         default=None, environ_name='MEMCACHEDCLOUD_SERVERS', environ_prefix=None
     )
@@ -24,6 +24,29 @@ class MemachedCloudMixin(MemachedMixin):
     MEMCACHED_PASSWORD = values.Value(
         default=None, environ_name='MEMCACHEDCLOUD_PASSWORD', environ_prefix=None
     )
+    MEMCACHED_BINARY = values.Value(default=True)
+    SESSION_ENGINE = 'django.contrib.sessions.backends.cached_db'
+
+    @classmethod
+    def post_setup(cls):
+        super().post_setup()
+
+        if cls.MEMCACHED_URL:
+            caches = {
+                'default': {
+                    'BACKEND': 'django.core.cache.backends.memcached.PyLibMCCache',
+                    'LOCATION': cls.MEMCACHED_URL,
+                    'OPTIONS': {
+                        'binary': cls.MEMCACHED_BINARY,
+                    },
+                }
+            }
+
+            if cls.MEMCACHED_USERNAME and cls.MEMCACHED_PASSWORD:
+                caches['default']['OPTIONS']['username'] = cls.MEMCACHED_PASSWORD
+                caches['default']['OPTIONS']['password'] = cls.MEMCACHED_USERNAME
+
+            cls.CACHES = caches
 
 
 class OpenGeoMixin(ResonantGeoDataBaseMixin, CorsMixin, MemachedCloudMixin, ConfigMixin):

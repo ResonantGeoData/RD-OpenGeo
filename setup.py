@@ -46,6 +46,7 @@ setup(
         'django-s3-file-field[minio]',
         'flower',
         'gunicorn',
+        'pylibmc',
         # RGD
         'django-rgd==0.2.13',
         'django-rgd-3d==0.2.13',
