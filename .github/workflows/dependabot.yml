@@ -16,6 +16,6 @@ jobs:
           directory: /
           branch: main
           username: x-access-token
-          bundler_version: 2.0.2
-          dependabot_version: 0.117.5
+          bundler_version: 2.3.5
+          dependabot_version: 0.171.2
           token: ${{ secrets.GITHUB_TOKEN }}
