@@ -1,12 +1,10 @@
-name: Dependabot
+name: RGD Dependabot
 on:
-  push:
-    branches:
-      - main
+  workflow_dispatch:
   schedule:
     - cron: "0 0 * * *"
 jobs:
-  check-dependencies:
+  check-rgd:
     runs-on: ubuntu-latest
     steps:
       - uses: banesullivan/dependabot-bump-together-action@main
