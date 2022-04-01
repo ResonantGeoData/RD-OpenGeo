@@ -84,6 +84,7 @@ class OpenGeoMixin(ResonantGeoDataBaseMixin, CorsMixin, ConfigMixin):
             'rgd_fmv',
             'rgd_geometry',
             'rgd_imagery',
+            'django_large_image',
         ]
 
     # To use endpoints from external origin
