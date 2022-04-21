@@ -3,5 +3,5 @@ resource "aws_route53_record" "gui" {
   name    = "gui"
   type    = "CNAME"
   ttl     = "300"
-  records = ["rgd-vue.netlify.app."]
+  records = ["rgd-vue.pages.dev"]
 }
