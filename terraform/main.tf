@@ -27,3 +27,7 @@ provider "aws" {
 provider "heroku" {
   # Must set HEROKU_EMAIL, HEROKU_API_KEY envvars
 }
+
+resource "aws_route53_zone" "this" {
+  name = "resonantgeodata.com"
+}
