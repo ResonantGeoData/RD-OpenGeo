@@ -48,10 +48,10 @@ setup(
         'gunicorn',
         'pylibmc>=1.5.1',
         # RGD
-        'django-rgd-3d==0.3.8',
-        'django-rgd-fmv==0.3.8',
-        'django-rgd-geometry==0.3.8',
-        'django-rgd-imagery==0.3.8',
+        'django-rgd-3d==0.3.11',
+        'django-rgd-fmv==0.3.11',
+        'django-rgd-geometry==0.3.11',
+        'django-rgd-imagery==0.3.11',
     ],
     extras_require={
         'dev': [
@@ -61,13 +61,13 @@ setup(
             'tox',
         ],
         'worker': [
-            'django-rgd-3d[worker]==0.3.8',
-            'django-rgd-fmv[worker]==0.3.8',
-            'django-rgd-geometry[worker]==0.3.8',
-            'django-rgd-imagery[worker]==0.3.8',
+            'django-rgd-3d[worker]==0.3.11',
+            'django-rgd-fmv[worker]==0.3.11',
+            'django-rgd-geometry[worker]==0.3.11',
+            'django-rgd-imagery[worker]==0.3.11',
         ],
         'fuse': [
-            'django-rgd[fuse]==0.3.8',
+            'django-rgd[fuse]==0.3.11',
         ],
     },
 )
